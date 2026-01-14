@@ -32,3 +32,6 @@ data = data.dropna(subset=["Temperature"])
 avg_per_year = data.groupby("Year")["Temperature"].mean()
 avg_per_station = data.groupby("STATION_NAME")["Temperature"].mean()
 
+hottest_station = avg_per_station.idxmax()
+coldest_station = avg_per_station.idxmin()
+
