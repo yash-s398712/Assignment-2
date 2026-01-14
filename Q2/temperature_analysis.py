@@ -29,3 +29,6 @@ for file in os.listdir(FOLDER_PATH):
 data = pd.concat(all_data, ignore_index=True)
 data = data.dropna(subset=["Temperature"])
 
+avg_per_year = data.groupby("Year")["Temperature"].mean()
+avg_per_station = data.groupby("STATION_NAME")["Temperature"].mean()
+
