@@ -1,70 +1,50 @@
 def encrypt_char(char, shift1, shift2):
-    """
-    Encrypts a single character based on the custom encryption rules.
-    """
     if char.islower():
-        # Lowercase letters
         if 'a' <= char <= 'm':
-            # First half: shift forward by shift1 * shift2
             shift = shift1 * shift2
             new_pos = (ord(char) - ord('a') + shift) % 26
             return chr(ord('a') + new_pos)
-        else:  # 'n' <= char <= 'z'
-            # Second half: shift backward by shift1 + shift2
+        else:  
             shift = shift1 + shift2
             new_pos = (ord(char) - ord('a') - shift) % 26
             return chr(ord('a') + new_pos)
     
     elif char.isupper():
-        # Uppercase letters
         if 'A' <= char <= 'M':
-            # First half: shift backward by shift1
             shift = shift1
             new_pos = (ord(char) - ord('A') - shift) % 26
             return chr(ord('A') + new_pos)
-        else:  # 'N' <= char <= 'Z'
-            # Second half: shift forward by shift2²
+        else:  
             shift = shift2 ** 2
             new_pos = (ord(char) - ord('A') + shift) % 26
             return chr(ord('A') + new_pos)
     
     else:
-        # Other characters remain unchanged
         return char
 
 
 def decrypt_char(char, shift1, shift2):
-    """
-    Decrypts a single character by reversing the encryption rules.
-    """
     if char.islower():
-        # Lowercase letters
         if 'a' <= char <= 'm':
-            # Reverse: shift backward by shift1 * shift2
             shift = shift1 * shift2
             new_pos = (ord(char) - ord('a') - shift) % 26
             return chr(ord('a') + new_pos)
-        else:  # 'n' <= char <= 'z'
-            # Reverse: shift forward by shift1 + shift2
+        else:  
             shift = shift1 + shift2
             new_pos = (ord(char) - ord('a') + shift) % 26
             return chr(ord('a') + new_pos)
     
     elif char.isupper():
-        # Uppercase letters
         if 'A' <= char <= 'M':
-            # Reverse: shift forward by shift1
             shift = shift1
             new_pos = (ord(char) - ord('A') + shift) % 26
             return chr(ord('A') + new_pos)
-        else:  # 'N' <= char <= 'Z'
-            # Reverse: shift backward by shift2²
+        else:  
             shift = shift2 ** 2
             new_pos = (ord(char) - ord('A') - shift) % 26
             return chr(ord('A') + new_pos)
     
     else:
-        # Other characters remain unchanged
         return char
 
 
