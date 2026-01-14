@@ -1,46 +1,51 @@
 import turtle
-import math
 
-# Recursive function to draw an inward-indented edge
+# Recursive function to draw one edge with inward triangle indentation
 def draw_edge(length, depth):
     if depth == 0:
         turtle.forward(length)
     else:
-        length /= 3
-        draw_edge(length, depth - 1)
-        turtle.right(60)
-        draw_edge(length, depth - 1)
-        turtle.left(120)
-        draw_edge(length, depth - 1)
-        turtle.right(60)
-        draw_edge(length, depth - 1)
+        segment = length / 3
+        draw_edge(segment, depth - 1)
+        turtle.left(60)
+        draw_edge(segment, depth - 1)
+        turtle.right(120)
+        draw_edge(segment, depth - 1)
+        turtle.left(60)
+        draw_edge(segment, depth - 1)
 
-# Draw a polygon using the recursive edge function
+# Function to draw a polygon with recursive edges
 def draw_polygon(sides, length, depth):
     angle = 360 / sides
     for _ in range(sides):
         draw_edge(length, depth)
-        turtle.left(angle)
+        turtle.right(angle)
 
-# ---------------- Main Program ----------------
+# Main program
+def main():
+    # User inputs
+    sides = int(input("Enter the number of sides (3-6 recommended): "))
+    length = int(input("Enter the side length (100-300 recommended): "))
+    depth = int(input("Enter the recursion depth (1-3 recommended): "))
 
-# User inputs
-sides = int(input("Enter the number of sides: "))
-length = int(input("Enter the side length: "))
-depth = int(input("Enter the recursion depth: "))
+    # Setup turtle
+    turtle.speed(0)          # Fastest drawing
+    turtle.hideturtle()      # Hide the turtle pointer
+    turtle.penup()
+    
+    # Center polygon on screen
+    turtle.goto(-length/2, length/2)
+    turtle.pendown()
 
-# Turtle setup
-turtle.speed(0)
-turtle.hideturtle()
-turtle.penup()
+    # Draw the pattern
+    draw_polygon(sides, length, depth)
 
-# Center the drawing
-radius = length / (2 * math.tan(math.pi / sides))
-turtle.goto(-length / 2, -radius / 2)
-turtle.pendown()
+    # Save the output as PostScript file
+    ts = turtle.getcanvas()  # get Tkinter canvas
+    ts.postscript(file="Q3_output.ps")  # save as .ps file
 
-# Draw the pattern
-draw_polygon(sides, length, depth)
+    # Keep the window open
+    turtle.done()
 
-# Keep window open
-turtle.done()
+if __name__ == "__main__":
+    main()
