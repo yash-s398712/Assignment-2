@@ -35,3 +35,12 @@ avg_per_station = data.groupby("STATION_NAME")["Temperature"].mean()
 hottest_station = avg_per_station.idxmax()
 coldest_station = avg_per_station.idxmin()
 
+print("Average Temperature Per Year:")
+print(avg_per_year.round(2))
+
+print("\nHottest Station:")
+print(hottest_station, "-", round(avg_per_station[hottest_station], 2), "°C")
+
+print("\nColdest Station:")
+print(coldest_station, "-", round(avg_per_station[coldest_station], 2), "°C")
+
