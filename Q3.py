@@ -1,7 +1,7 @@
 import turtle
 import math
 
-# Recursive function to draw an inward-indented edge
+
 def draw_edge(length, depth):
     if depth == 0:
         turtle.forward(length)
