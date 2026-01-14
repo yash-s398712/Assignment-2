@@ -49,9 +49,6 @@ def decrypt_char(char, shift1, shift2):
 
 
 def encrypt_file(input_file, output_file, shift1, shift2):
-    """
-    Reads from input_file, encrypts the content, and writes to output_file.
-    """
     try:
         with open(input_file, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -73,9 +70,6 @@ def encrypt_file(input_file, output_file, shift1, shift2):
 
 
 def decrypt_file(input_file, output_file, shift1, shift2):
-    """
-    Reads from input_file, decrypts the content, and writes to output_file.
-    """
     try:
         with open(input_file, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -97,9 +91,6 @@ def decrypt_file(input_file, output_file, shift1, shift2):
 
 
 def verify_decryption(original_file, decrypted_file):
-    """
-    Compares the original file with the decrypted file to verify accuracy.
-    """
     try:
         with open(original_file, 'r', encoding='utf-8') as f:
             original_content = f.read()
@@ -125,14 +116,10 @@ def verify_decryption(original_file, decrypted_file):
 
 
 def main():
-    """
-    Main program that orchestrates the encryption/decryption process.
-    """
     print("=" * 60)
     print("Custom Text Encryption/Decryption Program")
     print("=" * 60)
     
-    # Get user inputs for shift values
     try:
         shift1 = int(input("\nEnter shift1 value (integer): "))
         shift2 = int(input("Enter shift2 value (integer): "))
@@ -143,17 +130,14 @@ def main():
     print(f"\nUsing shift1={shift1}, shift2={shift2}")
     print("-" * 60)
     
-    # Step 1: Encrypt the file
     print("\n[Step 1] Encrypting...")
     if not encrypt_file("raw_text.txt", "encrypted_text.txt", shift1, shift2):
         return
     
-    # Step 2: Decrypt the file
     print("\n[Step 2] Decrypting...")
     if not decrypt_file("encrypted_text.txt", "decrypted_text.txt", shift1, shift2):
         return
     
-    # Step 3: Verify the decryption
     print("\n[Step 3] Verifying...")
     verify_decryption("raw_text.txt", "decrypted_text.txt")
     
