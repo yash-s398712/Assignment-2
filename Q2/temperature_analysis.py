@@ -26,3 +26,6 @@ for file in os.listdir(FOLDER_PATH):
         all_data.append(df_melted)
 
 
+data = pd.concat(all_data, ignore_index=True)
+data = data.dropna(subset=["Temperature"])
+
