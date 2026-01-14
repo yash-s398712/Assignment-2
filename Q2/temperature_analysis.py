@@ -11,4 +11,18 @@ for file in os.listdir(FOLDER_PATH):
         file_path = os.path.join(FOLDER_PATH, file)
 
         df = pd.read_csv(file_path)
-        all_data.append(df)
+
+        df_melted = df.melt(
+            id_vars=["STATION_NAME"],
+            value_vars=[
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ],
+            var_name="Month",
+            value_name="Temperature"
+        )
+
+        df_melted["Year"] = int(year)
+        all_data.append(df_melted)
+
+
